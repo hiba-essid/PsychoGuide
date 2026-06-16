@@ -1,0 +1,146 @@
+╔════════════════════════════════════════════════════════════════════════╗
+║                 🧠 PSYCHOGUIDE - GUIDE DE DÉMARRAGE                    ║
+║                                                                        ║
+║         Solution complète avec Node.js/Express + SQLite               ║
+║         (SANS PHP! SANS MySQL à installer!)                          ║
+╚════════════════════════════════════════════════════════════════════════╝
+
+---
+
+✅ ÉTAPE 1: INSTALLER NODE.JS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Allez sur https://nodejs.org/
+2. Téléchargez la version LTS
+3. Lancez l'installer et suivez les étapes (cliquez Next partout)
+4. Après l'installation, ouvrez un terminal et tapez:
+   
+   node --version
+   npm --version
+   
+   (Vous devriez voir les numéros de version)
+
+---
+
+✅ ÉTAPE 2: DÉMARRER LE SERVEUR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+OPTION A: Double-cliquer sur START_SERVER.bat (Facile! 🎯)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  → Aller dans: c:\Users\MSI\Desktop\mariem\
+  → Double-cliquer sur: START_SERVER.bat
+  → Le serveur démarre automatiquement!
+
+OU
+
+OPTION B: Terminal/Invite de commandes (Manuel)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  1. Ouvrir un terminal (Cmd ou PowerShell)
+  2. Aller dans le dossier:
+     cd c:\Users\MSI\Desktop\mariem
+  
+  3. Si c'est la 1ère fois, installer les dépendances:
+     npm install
+     (attendez que ça finisse...)
+  
+  4. Démarrer le serveur:
+     npm start
+
+---
+
+✅ ÉTAPE 3: ACCÉDER À L'APPLICATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Une fois que le serveur démarre, vous verrez:
+
+╔════════════════════════════════════════════════════════════════╗
+║          🧠 PsychoGuide Server Started Successfully 🧠         ║
+╠════════════════════════════════════════════════════════════════╣
+║  Server:  http://localhost:8000                              
+║  Database: c:\Users\MSI\Desktop\mariem\psychoguide.db
+║  Status: ✓ Opérationnel                                        
+╚════════════════════════════════════════════════════════════════╝
+
+→ Ouvrez votre navigateur et allez à: http://localhost:8000
+
+---
+
+✅ ÉTAPE 4: CRÉER UN COMPTE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Cliquer sur "Connexion" en haut à droite
+2. Entrer un email et un mot de passe
+3. Cliquer "Se Connecter"
+4. ✓ Vous êtes connecté!
+5. Cliquer sur "Mon Compte" pour accéder au carnet de stage
+
+---
+
+✅ ÉTAPE 5: UTILISER LE CARNET DE STAGE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Une fois dans "Mon Carnet de Stage":
+
+1. Choisir le type: Note, Question ou Problème
+2. Ajouter un titre
+3. Ajouter une description
+4. Cliquer "Enregistrer"
+5. L'entrée est AUTOMATIQUEMENT sauvegardée dans la base de données! 🎉
+
+Les données restent même après fermeture du navigateur!
+
+---
+
+🛑 ARRÊTER LE SERVEUR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Dans le terminal où le serveur tourne:
+  Appuyez sur: Ctrl + C
+
+---
+
+📁 FICHIERS IMPORTANTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📄 server.js              → Le serveur Node.js (ne pas modifier)
+📄 package.json           → Les dépendances (ne pas modifier)
+📄 PsychoGuide(2).html   → Le site web (vous pouvez modifier)
+📄 psychoguide.db        → La base de données (auto-créée)
+📄 .env                  → Configuration (secrets, port, etc)
+🎯 START_SERVER.bat      → Double-cliquez pour démarrer!
+
+---
+
+⚠️ PROBLÈMES COURANTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+❌ "npm not found"
+   → Node.js n'est pas installé
+   → Télécharger sur https://nodejs.org/
+
+❌ "Port 8000 is already in use"
+   → Un autre processus utilise le port
+   → Changer le port dans server.js ou arrêter l'autre app
+
+❌ "Cannot find module 'express'"
+   → Exécuter: npm install
+
+❌ Page blanche ou erreur de connexion
+   → Vérifier que le serveur tourne (npm start)
+   → Vérifier que le port est correct (8000)
+
+---
+
+✨ C'EST TOUT!
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Vous avez une application COMPLÈTE avec:
+✓ Authentification sécurisée (tokens JWT)
+✓ Carnet de stage avec sauvegarde BDD
+✓ Base de données SQLite (zéro configuration!)
+✓ Pas de PHP, pas de MySQL
+✓ Moderne et performant
+
+Bon développement! 🚀
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

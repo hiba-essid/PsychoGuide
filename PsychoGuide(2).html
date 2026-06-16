@@ -1,0 +1,2696 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PsychoGuide — Carnet de santé et gestion des médicaments. Services de psychologie et santé mentale experts.">
+  <title>PsychoGuide — Carnet de Santé</title>
+  
+  <!-- Modern Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+  
+  <style>
+    /* ============================================================================
+       CSS VARIABLES & BASE STYLES
+       ============================================================================ */
+    :root {
+      --color-primary: #0D2B55;
+      --color-primary-light: #1A4A7A;
+      --color-secondary: #1A7DAF;
+      --color-accent: #1A7DAF;
+      --color-accent-light: #E3F2FD;
+      --color-success: #1D9E75;
+      --color-danger: #E24B4A;
+      --color-warning: #E9A826;
+      --color-text-primary: #1C2B3A;
+      --color-text-secondary: #6B7280;
+      --color-text-inverse: #ffffff;
+      --color-background: #F4F8FB;
+      --color-background-subtle: #EEF3F8;
+      --color-background-card: #ffffff;
+      --color-border: #E5E7EB;
+      --font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      --font-size-xs: 0.75rem;
+      --font-size-sm: 0.875rem;
+      --font-size-base: 1rem;
+      --font-size-lg: 1.125rem;
+      --font-size-xl: 1.25rem;
+      --font-size-2xl: 1.5rem;
+      --font-size-3xl: 1.875rem;
+      --font-size-4xl: 2.25rem;
+      --font-weight-normal: 400;
+      --font-weight-medium: 500;
+      --font-weight-semibold: 600;
+      --font-weight-bold: 700;
+      --line-height-tight: 1.25;
+      --line-height-normal: 1.5;
+      --line-height-relaxed: 1.75;
+      --space-1: 0.25rem;
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+      --space-10: 2.5rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --space-20: 5rem;
+      --radius-sm: 0.375rem;
+      --radius-md: 0.5rem;
+      --radius-lg: 0.75rem;
+      --radius-xl: 1rem;
+      --radius-2xl: 1.5rem;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      --transition-fast: 150ms ease;
+      --transition-base: 300ms ease;
+      --transition-slow: 500ms ease;
+      --container-sm: 640px;
+      --container-md: 768px;
+      --container-lg: 1024px;
+      --container-xl: 1280px;
+      --z-dropdown: 100;
+      --z-sticky: 200;
+      --z-fixed: 300;
+      --z-modal-backdrop: 400;
+      --z-modal: 500;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-family);
+      font-size: var(--font-size-base);
+      line-height: var(--line-height-normal);
+      color: var(--color-text-primary);
+      background-color: var(--color-background);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container-xl);
+      margin: 0 auto;
+      padding: 0 var(--space-4);
+    }
+
+    /* ============================================================================
+       TYPOGRAPHY
+       ============================================================================ */
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: var(--font-weight-bold);
+      line-height: var(--line-height-tight);
+    }
+
+    h1 { font-size: var(--font-size-4xl); }
+    h2 { font-size: var(--font-size-2xl); }
+    h3 { font-size: var(--font-size-xl); }
+    h4 { font-size: var(--font-size-lg); }
+
+    .text-secondary { color: var(--color-text-secondary); }
+    .text-center { text-align: center; }
+    .mt-4 { margin-top: var(--space-4); }
+    .mt-6 { margin-top: var(--space-6); }
+    .mb-4 { margin-bottom: var(--space-4); }
+    .mb-6 { margin-bottom: var(--space-6); }
+    .mb-8 { margin-bottom: var(--space-8); }
+
+    /* ============================================================================
+       BUTTONS
+       ============================================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      padding: var(--space-3) var(--space-6);
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-semibold);
+      border-radius: var(--radius-lg);
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-primary {
+      background-color: var(--color-primary);
+      color: var(--color-text-inverse);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--color-primary-light);
+    }
+
+    .btn-secondary {
+      background-color: var(--color-background-subtle);
+      color: var(--color-text-primary);
+      border: 1px solid var(--color-border);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--color-accent-light);
+    }
+
+    .btn-accent {
+      background-color: var(--color-accent);
+      color: var(--color-text-inverse);
+    }
+
+    .btn-accent:hover {
+      background-color: #156590;
+    }
+
+    .btn-danger {
+      background-color: var(--color-danger);
+      color: var(--color-text-inverse);
+    }
+
+    .btn-danger:hover {
+      background-color: #c53030;
+    }
+
+    .btn-sm {
+      padding: var(--space-2) var(--space-4);
+      font-size: var(--font-size-xs);
+    }
+
+    .btn-lg {
+      padding: var(--space-4) var(--space-8);
+      font-size: var(--font-size-base);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: var(--color-text-inverse);
+      border: 2px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .btn-outline:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-color: var(--color-text-inverse);
+    }
+
+    .w-full { width: 100%; }
+
+    /* ============================================================================
+       CARDS
+       ============================================================================ */
+    .card {
+      background-color: var(--color-background-card);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--color-border);
+    }
+
+    .hover-lift {
+      transition: all var(--transition-base);
+    }
+
+    .hover-lift:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* ============================================================================
+       GRID SYSTEM
+       ============================================================================ */
+    .grid {
+      display: grid;
+      gap: var(--space-6);
+    }
+
+    .md\:grid-cols-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .md\:grid-cols-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    @media (max-width: 768px) {
+      .md\:grid-cols-2,
+      .md\:grid-cols-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ============================================================================
+       FORMS
+       ============================================================================ */
+    .field-label {
+      display: block;
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-2);
+    }
+
+    .field-input {
+      width: 100%;
+      padding: var(--space-3) var(--space-4);
+      font-size: var(--font-size-sm);
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      background-color: var(--color-background-card);
+      color: var(--color-text-primary);
+      transition: border-color var(--transition-fast);
+    }
+
+    .field-input:focus {
+      outline: none;
+      border-color: var(--color-accent);
+    }
+
+    .field-input::placeholder {
+      color: var(--color-text-secondary);
+      opacity: 0.6;
+    }
+
+    textarea.field-input {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    /* ============================================================================
+       SECTION STYLES
+       ============================================================================ */
+    .section {
+      padding: var(--space-16) var(--space-4);
+    }
+
+    /* ============================================================================
+       HEADER & NAVIGATION
+       ============================================================================ */
+    header {
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+      color: var(--color-text-inverse);
+      padding: var(--space-4) 0;
+      box-shadow: var(--shadow-md);
+      position: sticky;
+      top: 0;
+      z-index: var(--z-sticky);
+    }
+
+    header .container {
+      max-width: 1560px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-bold);
+    }
+
+    .header-brand i {
+      font-size: 28px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: var(--space-8);
+      margin: 0;
+    }
+
+    nav a {
+      color: var(--color-text-inverse);
+      font-weight: var(--font-weight-semibold);
+      transition: var(--transition-fast);
+      position: relative;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      text-decoration: none;
+      opacity: 0.9;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--color-accent);
+      transition: width var(--transition-base);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--color-text-inverse);
+      font-size: 24px;
+      cursor: pointer;
+      padding: 0;
+      transition: var(--transition-fast);
+    }
+
+    .menu-toggle:hover {
+      opacity: 0.8;
+    }
+
+    .mobile-nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: var(--space-4);
+      z-index: var(--z-fixed);
+    }
+
+    .mobile-nav.active {
+      display: block;
+      animation: slideDown 0.3s ease;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .mobile-nav a {
+      display: block;
+      padding: var(--space-3) var(--space-4);
+      margin-bottom: var(--space-2);
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      transition: var(--transition-fast);
+      color: var(--color-text-inverse);
+    }
+
+    .mobile-nav a:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    header.shrink {
+      padding: var(--space-2) 0;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .header-actions {
+      display: flex;
+      gap: var(--space-3);
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .header-actions .btn span {
+        display: none;
+      }
+    }
+
+    /* ============================================================================
+       HERO SECTION
+       ============================================================================ */
+    .hero-section {
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+      color: var(--color-text-inverse);
+      padding: var(--space-20) var(--space-4);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 400px;
+      height: 400px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+      transform: translate(100px, -100px);
+    }
+
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 300px;
+      height: 300px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 50%;
+      transform: translate(-100px, 100px);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: var(--container-lg);
+      margin: 0 auto;
+    }
+
+    .hero-section h1 {
+      font-size: var(--font-size-4xl);
+      margin-bottom: var(--space-4);
+      font-weight: var(--font-weight-bold);
+    }
+
+    .hero-section .hero-subtitle {
+      font-size: var(--font-size-xl);
+      margin-bottom: var(--space-8);
+      opacity: 0.95;
+      line-height: var(--line-height-relaxed);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-6);
+      margin-bottom: var(--space-12);
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: var(--space-6);
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .stat-number {
+      font-size: var(--font-size-3xl);
+      font-weight: var(--font-weight-bold);
+    }
+
+    .stat-label {
+      font-size: var(--font-size-base);
+      opacity: 0.9;
+      margin-top: var(--space-2);
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: var(--space-4);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 768px) {
+      .hero-section h1 {
+        font-size: var(--font-size-2xl);
+      }
+
+      .hero-section .hero-subtitle {
+        font-size: var(--font-size-lg);
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-cta {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+
+    /* ============================================================================
+       FEATURE ICONS
+       ============================================================================ */
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      color: white;
+      margin-bottom: var(--space-4);
+    }
+
+    .service-card .card {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-card p {
+      flex-grow: 1;
+    }
+
+    /* ============================================================================
+       TEAM SECTION
+       ============================================================================ */
+    .team-member {
+      text-align: center;
+      transition: var(--transition-base);
+    }
+
+    .team-member .card {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .team-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-accent), var(--color-secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-4);
+      font-size: 48px;
+      color: white;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .team-member:hover .card {
+      box-shadow: var(--shadow-xl);
+      transform: translateY(-4px);
+    }
+
+    .team-name {
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text-primary);
+    }
+
+    .team-role {
+      font-size: var(--font-size-sm);
+      color: var(--color-accent);
+      margin: var(--space-1) 0 var(--space-3);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: var(--font-weight-semibold);
+    }
+
+    .team-bio {
+      color: var(--color-text-secondary);
+      font-size: var(--font-size-sm);
+      line-height: var(--line-height-relaxed);
+    }
+
+    /* ============================================================================
+       FAQ SECTION
+       ============================================================================ */
+    .faq-item {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--space-4);
+      overflow: hidden;
+      background: var(--color-background-card);
+      transition: var(--transition-fast);
+    }
+
+    .faq-item:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .faq-question {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-6);
+      cursor: pointer;
+      background: var(--color-background-card);
+      border: none;
+      width: 100%;
+      font-size: var(--font-size-base);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-primary);
+      transition: var(--transition-fast);
+      text-align: left;
+    }
+
+    .faq-question:hover {
+      background: var(--color-background-subtle);
+    }
+
+    .faq-question i {
+      font-size: 20px;
+      color: var(--color-accent);
+      transition: transform var(--transition-base);
+    }
+
+    .faq-item.active .faq-question i {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height var(--transition-base);
+      padding: 0 var(--space-6);
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 500px;
+      padding: 0 var(--space-6) var(--space-6);
+    }
+
+    .faq-answer p {
+      color: var(--color-text-secondary);
+      line-height: var(--line-height-relaxed);
+      margin: 0;
+    }
+
+    /* ============================================================================
+       MODAL STYLES
+       ============================================================================ */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: var(--z-modal);
+      padding: var(--space-4);
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal {
+      background: white;
+      border-radius: var(--radius-2xl);
+      padding: var(--space-8);
+      max-width: 500px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: var(--shadow-xl);
+      position: relative;
+      animation: slideUp 0.3s ease-out;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-6);
+    }
+
+    .modal-header h2 {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--color-text-secondary);
+      padding: var(--space-2);
+      transition: color var(--transition-fast);
+    }
+
+    .modal-close:hover {
+      color: var(--color-text-primary);
+    }
+
+    .modal-tabs {
+      display: flex;
+      gap: var(--space-2);
+      margin-bottom: var(--space-6);
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: var(--space-4);
+    }
+
+    .modal-tab {
+      padding: var(--space-3) var(--space-6);
+      background: none;
+      border: none;
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      border-radius: var(--radius-md);
+      transition: all var(--transition-fast);
+    }
+
+    .modal-tab.active {
+      background: var(--color-accent-light);
+      color: var(--color-accent);
+    }
+
+    .modal-tab:hover:not(.active) {
+      background: var(--color-background-subtle);
+    }
+
+    .form-group {
+      margin-bottom: var(--space-4);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4);
+    }
+
+    @media (max-width: 480px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ============================================================================
+       DASHBOARD STYLES
+       ============================================================================ */
+    .dashboard-section {
+      display: none;
+      min-height: calc(100vh - 64px);
+      background: #f3f7fb;
+      padding: 58px 0 72px;
+    }
+
+    .dashboard-section.active {
+      display: block;
+    }
+
+    .dashboard-section .container {
+      max-width: 1560px;
+    }
+
+    body.account-view main > section:not(#dashboard),
+    body.account-view footer {
+      display: none !important;
+    }
+
+    body.account-view {
+      background: #f3f7fb;
+    }
+
+    body.account-view #user-btn {
+      min-width: 100px;
+      height: 39px;
+      padding: 0 var(--space-4);
+      border: none;
+      border-radius: 14px;
+      background: #f7fbff;
+      color: var(--color-text-primary);
+      box-shadow: none;
+      justify-content: center;
+      gap: var(--space-2);
+    }
+
+    body.account-view #user-btn i {
+      font-size: 17px;
+    }
+
+    .user-welcome {
+      background: linear-gradient(105deg, #133865 0%, #2189b3 100%);
+      color: white;
+      min-height: 158px;
+      padding: 42px 20px;
+      border-radius: 28px;
+      margin-bottom: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .user-welcome h2 {
+      color: white;
+      margin: 0 0 14px;
+      font-size: 30px;
+      line-height: 1.2;
+    }
+
+    .user-welcome p {
+      opacity: 0.9;
+      margin: 0;
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 30px;
+    }
+
+    .dashboard-card {
+      background: white;
+      border-radius: 18px;
+      padding: 30px;
+      min-height: 424px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+      border: 1px solid #dce3ea;
+    }
+
+    .dashboard-card h3 {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 0 0 18px;
+      color: #0f2740;
+      font-size: 28px;
+      line-height: 1.2;
+    }
+
+    .dashboard-card h3 i {
+      color: var(--color-accent);
+      font-size: 28px;
+    }
+
+    .dashboard-card > .text-secondary {
+      margin: 0;
+      color: #647085;
+      font-size: 20px;
+      line-height: 1.5;
+    }
+
+    .dashboard-card .btn {
+      min-height: 52px;
+      border-radius: 14px;
+      font-size: 18px;
+      font-weight: 700;
+      margin-top: auto;
+    }
+
+    .dashboard-section .btn-secondary {
+      min-width: 222px;
+      min-height: 54px;
+      border-radius: 14px;
+      font-size: 18px;
+      font-weight: 700;
+      background: #f7fafc;
+      border: 1px solid #dce3ea;
+      color: #0f2740;
+    }
+
+    @media (max-width: 900px) {
+      .dashboard-section {
+        padding: 24px 0 44px;
+      }
+
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 22px;
+      }
+
+      .user-welcome {
+        min-height: 150px;
+        padding: 30px 20px;
+        border-radius: 22px;
+      }
+
+      .user-welcome h2 {
+        font-size: 26px;
+      }
+
+      .user-welcome p,
+      .dashboard-card > .text-secondary,
+      .empty-state p {
+        font-size: 17px;
+      }
+
+      .dashboard-card {
+        min-height: 360px;
+        padding: 24px;
+      }
+
+      .dashboard-card h3 {
+        font-size: 24px;
+      }
+    }
+
+    /* ============================================================================
+       MEDICATION LIST STYLES
+       ============================================================================ */
+    .medication-list {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .medication-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: var(--space-4);
+      border-bottom: 1px solid var(--color-border);
+      transition: background var(--transition-fast);
+    }
+
+    .medication-item:hover {
+      background: var(--color-background-subtle);
+    }
+
+    .medication-item:last-child {
+      border-bottom: none;
+    }
+
+    .medication-info {
+      flex: 1;
+    }
+
+    .medication-name {
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-1);
+    }
+
+    .medication-details {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-secondary);
+    }
+
+    .medication-actions {
+      display: flex;
+      gap: var(--space-2);
+    }
+
+    .medication-actions button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: var(--space-2);
+      color: var(--color-text-secondary);
+      transition: color var(--transition-fast);
+      border-radius: var(--radius-md);
+    }
+
+    .medication-actions button:hover {
+      background: var(--color-background-subtle);
+      color: var(--color-accent);
+    }
+
+    .medication-actions button.delete:hover {
+      color: var(--color-danger);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: var(--space-8);
+      color: var(--color-text-secondary);
+    }
+
+    .empty-state i {
+      font-size: 48px;
+      opacity: 0.3;
+      margin-bottom: var(--space-4);
+      display: block;
+    }
+
+    .dashboard-card .empty-state {
+      flex: 1;
+      min-height: 206px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 10px;
+    }
+
+    .dashboard-card .empty-state i {
+      font-size: 52px;
+      color: #8a94a3;
+      opacity: 0.35;
+      margin-bottom: 26px;
+    }
+
+    .dashboard-card .empty-state p {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.4;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-md);
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-semibold);
+    }
+
+    .badge-matin {
+      background: #FEF8E7;
+      color: #633806;
+    }
+
+    .badge-midi {
+      background: #E3F5EE;
+      color: #085041;
+    }
+
+    .badge-soir {
+      background: #EBF4FD;
+      color: #0C447C;
+    }
+
+    .badge-nuit {
+      background: #EEEDFE;
+      color: #3C3489;
+    }
+
+    /* ============================================================================
+       ADD/EDIT FORM STYLES
+       ============================================================================ */
+    .add-med-form {
+      background: var(--color-background-subtle);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+      margin-top: var(--space-4);
+    }
+
+    .time-slots {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-2);
+    }
+
+    .time-slot {
+      padding: var(--space-3);
+      text-align: center;
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      background: white;
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-semibold);
+    }
+
+    .time-slot:hover {
+      border-color: var(--color-accent);
+    }
+
+    .time-slot.active {
+      background: var(--color-accent);
+      color: white;
+      border-color: var(--color-accent);
+    }
+
+    /* ============================================================================
+       CARNET STYLES
+       ============================================================================ */
+    .carnet-list {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .carnet-item {
+      background: white;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-4);
+      margin-bottom: var(--space-3);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      transition: all var(--transition-fast);
+    }
+
+    .carnet-item:hover {
+      box-shadow: var(--shadow-md);
+      border-color: var(--color-accent);
+    }
+
+    .carnet-type {
+      display: inline-block;
+      padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-md);
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-bold);
+      text-transform: uppercase;
+      margin-bottom: var(--space-2);
+    }
+
+    .carnet-type.note {
+      background: #E3F2FD;
+      color: #1976D2;
+    }
+
+    .carnet-type.medicament {
+      background: #E3F5EE;
+      color: #1D9E75;
+    }
+
+    .carnet-type.rendez-vous {
+      background: #FEF8E7;
+      color: #8A5C00;
+    }
+
+    .carnet-title {
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-1);
+    }
+
+    .carnet-description {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+      line-height: var(--line-height-relaxed);
+    }
+
+    .carnet-date {
+      font-size: var(--font-size-xs);
+      color: #999;
+      margin-top: var(--space-2);
+    }
+
+    /* ============================================================================
+       FOOTER
+       ============================================================================ */
+    footer {
+      background-color: var(--color-primary);
+      color: var(--color-text-inverse);
+      padding: var(--space-8) var(--space-4);
+      text-align: center;
+    }
+
+    footer a {
+      color: var(--color-text-inverse);
+      text-decoration: underline;
+    }
+
+    footer a:hover {
+      opacity: 0.8;
+    }
+
+    /* ============================================================================
+       UTILITY CLASSES
+       ============================================================================ */
+    .hidden {
+      display: none !important;
+    }
+
+    .flex {
+      display: flex;
+    }
+
+    .flex-col {
+      flex-direction: column;
+    }
+
+    .items-center {
+      align-items: center;
+    }
+
+    .justify-between {
+      justify-content: space-between;
+    }
+
+    .gap-2 {
+      gap: var(--space-2);
+    }
+
+    .gap-4 {
+      gap: var(--space-4);
+    }
+
+    .mb-4 {
+      margin-bottom: var(--space-4);
+    }
+
+    .mb-6 {
+      margin-bottom: var(--space-6);
+    }
+
+    /* ============================================================================
+       ANIMATIONS
+       ============================================================================ */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .fade-in {
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    /* ============================================================================
+       TOAST NOTIFICATIONS
+       ============================================================================ */
+    .toast-container {
+      position: fixed;
+      bottom: var(--space-6);
+      right: var(--space-6);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .toast {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: var(--space-4) var(--space-6);
+      box-shadow: var(--shadow-xl);
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      animation: slideIn 0.3s ease-out;
+      max-width: 350px;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    .toast.success {
+      border-left: 4px solid var(--color-success);
+    }
+
+    .toast.error {
+      border-left: 4px solid var(--color-danger);
+    }
+
+    .toast.info {
+      border-left: 4px solid var(--color-accent);
+    }
+
+    .toast i {
+      font-size: 20px;
+    }
+
+    .toast.success i {
+      color: var(--color-success);
+    }
+
+    .toast.error i {
+      color: var(--color-danger);
+    }
+
+    .toast.info i {
+      color: var(--color-accent);
+    }
+  </style>
+</head>
+<body>
+  <!-- ============================================================================
+       HEADER & NAVIGATION
+       ============================================================================ -->
+  <header id="header">
+    <div class="container">
+      <div class="header-brand">
+        <i class="ti ti-brain"></i>
+        <span>PsychoGuide</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#equipe">Équipe</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button id="login-btn" class="btn btn-accent btn-sm" onclick="openAuthModal()">
+          <i class="ti ti-login"></i>
+          <span>Connexion</span>
+        </button>
+        <button id="user-btn" class="btn btn-secondary btn-sm hidden" onclick="openDashboard()">
+          <i class="ti ti-user"></i>
+          <span id="user-name">Mon Compte</span>
+        </button>
+        <button class="menu-toggle" id="menu-toggle" onclick="toggleMobileMenu()">
+          <i class="ti ti-menu-2"></i>
+        </button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav">
+      <a href="#accueil">Accueil</a>
+      <a href="#services">Services</a>
+      <a href="#equipe">Équipe</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ============================================================================
+         HERO SECTION
+         ============================================================================ -->
+    <section class="hero-section" id="accueil">
+      <div class="hero-content">
+        <h1>Gestion de Votre Santé Mentale</h1>
+        <p class="hero-subtitle">
+          Créez votre carnet de santé personnel, suivez vos médicaments et accompagnez 
+          votre parcours de bien-être avec PsychoGuide.
+        </p>
+
+        <div class="hero-stats">
+          <div class="stat-card">
+            <div class="stat-number">25+</div>
+            <div class="stat-label">Médicaments</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">500+</div>
+            <div class="stat-label">Utilisateurs</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Support</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Sécurisé</div>
+          </div>
+        </div>
+
+        <div class="hero-cta">
+          <button class="btn btn-accent btn-lg" onclick="openAuthModal()">
+            <i class="ti ti-user-plus"></i> Créer un Compte
+          </button>
+          <button class="btn btn-outline btn-lg" onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})">
+            <i class="ti ti-arrow-right"></i> Découvrir les Services
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================================
+         SERVICES SECTION
+         ============================================================================ -->
+    <section id="services" class="section" style="background-color: var(--color-background-subtle);">
+      <div class="container">
+        <h2 style="text-align: center; margin-bottom: var(--space-12);">Nos Services</h2>
+
+        <div class="grid md:grid-cols-3">
+          <!-- Carnet de Santé -->
+          <div class="service-card">
+            <div class="card hover-lift">
+              <div class="feature-icon">
+                <i class="ti ti-notebook"></i>
+              </div>
+              <h3>Carnet de Santé</h3>
+              <p>
+                Créez et gérez votre carnet de santé personnel. Ajoutez des notes, 
+                suivez vos rendez-vous et conservez toutes vos informations médicales.
+              </p>
+              <button class="btn btn-primary btn-sm mt-6" onclick="openAuthModal()">
+                <i class="ti ti-plus"></i> Créer mon Carnet
+              </button>
+            </div>
+          </div>
+
+          <!-- Gestion des Médicaments -->
+          <div class="service-card">
+            <div class="card hover-lift">
+              <div class="feature-icon">
+                <i class="ti ti-pill"></i>
+              </div>
+              <h3>Gestion des Médicaments</h3>
+              <p>
+                Ajoutez vos médicaments, suivez les horaires de prise, et recevez 
+                des rappels pour ne jamais oublier votre traitement.
+              </p>
+              <button class="btn btn-primary btn-sm mt-6" onclick="openAuthModal()">
+                <i class="ti ti-list-check"></i> Ajouter un Médicament
+              </button>
+            </div>
+          </div>
+
+          <!-- Suivi Médical -->
+          <div class="service-card">
+            <div class="card hover-lift">
+              <div class="feature-icon">
+                <i class="ti ti-heartbeat"></i>
+              </div>
+              <h3>Suivi Médical</h3>
+              <p>
+                Gardez une trace de votre évolution, notez les effets secondaires 
+                et partagez vos données avec vos professionnels de santé.
+              </p>
+              <button class="btn btn-primary btn-sm mt-6" onclick="openAuthModal()">
+                <i class="ti ti-chart-line"></i> Commencer le Suivi
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================================
+         TEAM SECTION
+         ============================================================================ -->
+    <section id="equipe" class="section">
+      <div class="container">
+        <h2 style="text-align: center; margin-bottom: var(--space-12);">Notre Équipe</h2>
+
+        <div class="grid md:grid-cols-3">
+          <div class="team-member">
+            <div class="card">
+              <div class="team-avatar">
+                <i class="ti ti-user"></i>
+              </div>
+              <h3 class="team-name">Mariem Essid</h3>
+              <p class="team-role">Infimière</p>
+              <p class="team-bio">
+                Spécialisée dans les troubles anxieux et la thérapie cognitivo-comportementale. 
+                Plus de 12 ans d'expérience clinique.
+              </p>
+            </div>
+          </div>
+
+          <div class="team-member">
+            <div class="card">
+              <div class="team-avatar">
+                <i class="ti ti-user"></i>
+              </div>
+              <h3 class="team-name">Rim Touzi</h3>
+              <p class="team-role">Infimière</p>
+              <p class="team-bio">
+                Expert en gestion des médicaments et troubles de l'humeur. 
+                Certification en psychopharmacologie.
+              </p>
+            </div>
+          </div>
+
+          <div class="team-member">
+            <div class="card">
+              <div class="team-avatar">
+                <i class="ti ti-user"></i>
+              </div>
+              <h3 class="team-name">Dr. Maria González</h3>
+              <p class="team-role">Thérapeute EMDR</p>
+              <p class="team-bio">
+                Praticienne certifiée EMDR spécialisée dans la récupération du trauma. 
+                Approche bienveillante et culturellement sensible.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================================
+         FAQ SECTION
+         ============================================================================ -->
+    <section id="faq" class="section" style="background-color: var(--color-background-subtle);">
+      <div class="container">
+        <h2 style="text-align: center; margin-bottom: var(--space-12);">Questions Fréquentes</h2>
+
+        <div class="grid md:grid-cols-2">
+          <div>
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span>Comment créer mon carnet de santé ?</span>
+                <i class="ti ti-chevron-down"></i>
+              </button>
+              <div class="faq-answer">
+                <p>
+                  Créez un compte gratuit sur PsychoGuide, puis accédez à votre espace personnel 
+                  pour créer votre carnet de santé. Vous pourrez y ajouter des notes, des médicaments 
+                  et suivre votre évolution.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span>Mes données sont-elles sécurisées ?</span>
+                <i class="ti ti-chevron-down"></i>
+              </button>
+              <div class="faq-answer">
+                <p>
+                  Oui, toutes vos données sont stockées de manière sécurisée et cryptée. 
+                  Seul vous avez accès à vos informations personnelles. Nous ne partageons 
+                  jamais vos données avec des tiers.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span>Puis-je ajouter plusieurs médicaments ?</span>
+                <i class="ti ti-chevron-down"></i>
+              </button>
+              <div class="faq-answer">
+                <p>
+                  Absolument ! Vous pouvez ajouter autant de médicaments que vous le souhaitez, 
+                  avec des détails complets : nom, dosage, fréquence, horaires de prise, 
+                  et notes personnelles.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span>Le service est-il gratuit ?</span>
+                <i class="ti ti-chevron-down"></i>
+              </button>
+              <div class="faq-answer">
+                <p>
+                  Oui, PsychoGuide est entièrement gratuit pour tous les utilisateurs. 
+                  Nous croyons que l'accès à la santé mentale ne devrait pas avoir de barrière financière.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================================
+         CONTACT SECTION
+         ============================================================================ -->
+    <section id="contact" class="section">
+      <div class="container">
+        <h2 style="text-align: center; margin-bottom: var(--space-12);">Nous Contacter</h2>
+
+        <div class="grid md:grid-cols-2">
+          <div class="card">
+            <h3 style="margin-bottom: var(--space-6);">Informations de Contact</h3>
+
+            <div style="display: flex; align-items: flex-start; gap: var(--space-4); margin-bottom: var(--space-6);">
+              <div class="feature-icon" style="width: 50px; height: 50px; margin: 0;">
+                <i class="ti ti-map-pin"></i>
+              </div>
+              <div>
+                <h4 style="margin: 0 0 var(--space-1) 0;">Adresse</h4>
+                <p class="text-secondary" style="margin: 0;">
+                  123 Avenue du Bien-Être, Suite 200<br>
+                  Sousse, Tunisie 4000
+                </p>
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: flex-start; gap: var(--space-4); margin-bottom: var(--space-6);">
+              <div class="feature-icon" style="width: 50px; height: 50px; margin: 0;">
+                <i class="ti ti-phone"></i>
+              </div>
+              <div>
+                <h4 style="margin: 0 0 var(--space-1) 0;">Téléphone</h4>
+                <p class="text-secondary" style="margin: 0;">
+                  +216 73 123 456<br>
+                  Lun–Ven, 9h–18h
+                </p>
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: flex-start; gap: var(--space-4);">
+              <div class="feature-icon" style="width: 50px; height: 50px; margin: 0;">
+                <i class="ti ti-mail"></i>
+              </div>
+              <div>
+                <h4 style="margin: 0 0 var(--space-1) 0;">Email</h4>
+                <p class="text-secondary" style="margin: 0;">
+                  info@psychoguide.tn<br>
+                  support@psychoguide.tn
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <form id="contact-form" onsubmit="handleContactSubmit(event)">
+              <div class="form-group">
+                <label class="field-label">Nom Complet *</label>
+                <input type="text" class="field-input" placeholder="Votre nom" required>
+              </div>
+
+              <div class="form-group">
+                <label class="field-label">Email *</label>
+                <input type="email" class="field-input" placeholder="votre@email.com" required>
+              </div>
+
+              <div class="form-group">
+                <label class="field-label">Message *</label>
+                <textarea class="field-input" rows="5" placeholder="Comment pouvons-nous vous aider ?" required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary w-full">
+                <i class="ti ti-send"></i> Envoyer le Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================================
+         DASHBOARD SECTION (Hidden by default)
+         ============================================================================ -->
+    <section id="dashboard" class="section dashboard-section">
+      <div class="container">
+        <div class="user-welcome">
+          <h2>Bienvenue, <span id="dashboard-user-name">Utilisateur</span> !</h2>
+          <p>Gérez votre carnet de santé et vos médicaments en toute simplicité.</p>
+        </div>
+
+        <div class="dashboard-grid">
+          <!-- Carnet de Santé Card -->
+          <div class="dashboard-card">
+            <h3>
+              <i class="ti ti-notebook"></i>
+              Mon Carnet de Santé
+            </h3>
+            <p class="text-secondary mb-4">
+              Ajoutez des notes, des observations et suivez votre parcours de santé.
+            </p>
+            
+            <div id="carnet-list" class="carnet-list">
+              <div class="empty-state">
+                <i class="ti ti-notebook"></i>
+                <p>Aucune entrée dans votre carnet. Ajoutez votre première note !</p>
+              </div>
+            </div>
+
+            <button class="btn btn-accent w-full mt-4" onclick="openAddCarnetModal()">
+              <i class="ti ti-plus"></i> Ajouter une Entrée
+            </button>
+          </div>
+
+          <!-- Médicaments Card -->
+          <div class="dashboard-card">
+            <h3>
+              <i class="ti ti-pill"></i>
+              Mes Médicaments
+            </h3>
+            <p class="text-secondary mb-4">
+              Suivez vos traitements et horaires de prise.
+            </p>
+            
+            <div id="medication-list" class="medication-list">
+              <div class="empty-state">
+                <i class="ti ti-pill"></i>
+                <p>Aucun médicament ajouté. Cliquez ci-dessous pour en ajouter.</p>
+              </div>
+            </div>
+
+            <button class="btn btn-accent w-full mt-4" onclick="openAddMedicationModal()">
+              <i class="ti ti-plus"></i> Ajouter un Médicament
+            </button>
+          </div>
+        </div>
+
+        <div style="margin-top: var(--space-8); text-align: center;">
+          <button class="btn btn-secondary" onclick="logout()">
+            <i class="ti ti-logout"></i> Se Déconnecter
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================================
+       AUTH MODAL (Login/Register)
+       ============================================================================ -->
+  <div id="auth-modal" class="modal-overlay">
+    <div class="modal" style="max-width: 450px;">
+      <div class="modal-header">
+        <h2>
+          <i class="ti ti-user" style="color: var(--color-accent);"></i>
+          <span id="auth-modal-title">Connexion</span>
+        </h2>
+        <button class="modal-close" onclick="closeAuthModal()">
+          <i class="ti ti-x"></i>
+        </button>
+      </div>
+
+      <div class="modal-tabs">
+        <button class="modal-tab active" id="tab-login" onclick="switchAuthTab('login')">
+          Connexion
+        </button>
+        <button class="modal-tab" id="tab-register" onclick="switchAuthTab('register')">
+          Inscription
+        </button>
+      </div>
+
+      <!-- Login Form -->
+      <form id="login-form" onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label class="field-label">Email *</label>
+          <input type="email" class="field-input" id="login-email" placeholder="votre@email.com" required>
+        </div>
+        <div class="form-group">
+          <label class="field-label">Mot de passe *</label>
+          <input type="password" class="field-input" id="login-password" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn btn-accent w-full">
+          <i class="ti ti-login"></i> Se Connecter
+        </button>
+      </form>
+
+      <!-- Register Form -->
+      <form id="register-form" class="hidden" onsubmit="handleRegister(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="field-label">Prénom *</label>
+            <input type="text" class="field-input" id="register-prenom" placeholder="Votre prénom" required>
+          </div>
+          <div class="form-group">
+            <label class="field-label">Nom *</label>
+            <input type="text" class="field-input" id="register-nom" placeholder="Votre nom" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="field-label">Email *</label>
+          <input type="email" class="field-input" id="register-email" placeholder="votre@email.com" required>
+        </div>
+        <div class="form-group">
+          <label class="field-label">Mot de passe *</label>
+          <input type="password" class="field-input" id="register-password" placeholder="Minimum 6 caractères" required minlength="6">
+        </div>
+        <div class="form-group">
+          <label class="field-label">Confirmer le mot de passe *</label>
+          <input type="password" class="field-input" id="register-confirm" placeholder="Confirmez votre mot de passe" required>
+        </div>
+        <button type="submit" class="btn btn-accent w-full">
+          <i class="ti ti-user-plus"></i> Créer mon Compte
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================================================
+       ADD CARNET ENTRY MODAL
+       ============================================================================ -->
+  <div id="carnet-modal" class="modal-overlay">
+    <div class="modal" style="max-width: 500px;">
+      <div class="modal-header">
+        <h2>
+          <i class="ti ti-notebook" style="color: var(--color-accent);"></i>
+          Ajouter au Carnet
+        </h2>
+        <button class="modal-close" onclick="closeCarnetModal()">
+          <i class="ti ti-x"></i>
+        </button>
+      </div>
+
+      <form id="carnet-form" onsubmit="handleAddCarnet(event)">
+        <div class="form-group">
+          <label class="field-label">Type d'entrée *</label>
+          <select class="field-input" id="carnet-type" required>
+            <option value="note">Note</option>
+            <option value="observation">Observation</option>
+            <option value="rendez-vous">Rendez-vous</option>
+            <option value="symptome">Symptôme</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="field-label">Titre *</label>
+          <input type="text" class="field-input" id="carnet-title" placeholder="Titre de votre entrée" required>
+        </div>
+        <div class="form-group">
+          <label class="field-label">Description</label>
+          <textarea class="field-input" id="carnet-description" rows="4" placeholder="Décrivez en détail..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-accent w-full">
+          <i class="ti ti-save"></i> Enregistrer
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================================================
+       ADD MEDICATION MODAL
+       ============================================================================ -->
+  <div id="medication-modal" class="modal-overlay">
+    <div class="modal" style="max-width: 550px;">
+      <div class="modal-header">
+        <h2>
+          <i class="ti ti-pill" style="color: var(--color-accent);"></i>
+          Ajouter un Médicament
+        </h2>
+        <button class="modal-close" onclick="closeMedicationModal()">
+          <i class="ti ti-x"></i>
+        </button>
+      </div>
+
+      <form id="medication-form" onsubmit="handleAddMedication(event)">
+        <div class="form-group">
+          <label class="field-label">Nom du médicament *</label>
+          <input type="text" class="field-input" id="med-name" placeholder="Ex: Doliprane, Lexomil..." required>
+        </div>
+        <div class="form-group">
+          <label class="field-label">Dosage *</label>
+          <input type="text" class="field-input" id="med-dosage" placeholder="Ex: 500mg, 10mg..." required>
+        </div>
+        <div class="form-group">
+          <label class="field-label">Horaire de prise *</label>
+          <div class="time-slots">
+            <button type="button" class="time-slot" onclick="toggleTimeSlot(this)" data-time="matin">
+              <i class="ti ti-sun"></i><br>Matin
+            </button>
+            <button type="button" class="time-slot" onclick="toggleTimeSlot(this)" data-time="midi">
+              <i class="ti ti-bolt"></i><br>Midi
+            </button>
+            <button type="button" class="time-slot" onclick="toggleTimeSlot(this)" data-time="soir">
+              <i class="ti ti-moon"></i><br>Soir
+            </button>
+            <button type="button" class="time-slot" onclick="toggleTimeSlot(this)" data-time="nuit">
+              <i class="ti ti-star"></i><br>Nuit
+            </button>
+          </div>
+          <input type="hidden" id="med-times" value="">
+        </div>
+        <div class="form-group">
+          <label class="field-label">Fréquence</label>
+          <select class="field-input" id="med-frequency">
+            <option value="quotidien">Quotidien</option>
+            <option value="semaine">2 fois par semaine</option>
+            <option value="occasionnel">Occasionnel</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="field-label">Notes</label>
+          <textarea class="field-input" id="med-notes" rows="3" placeholder="Observations, effets secondaires..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-accent w-full">
+          <i class="ti ti-plus"></i> Ajouter le Médicament
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================================================
+       EDIT MEDICATION MODAL
+       ============================================================================ -->
+  <div id="edit-medication-modal" class="modal-overlay">
+    <div class="modal" style="max-width: 550px;">
+      <div class="modal-header">
+        <h2>
+          <i class="ti ti-pencil" style="color: var(--color-accent);"></i>
+          Modifier le Médicament
+        </h2>
+        <button class="modal-close" onclick="closeEditMedicationModal()">
+          <i class="ti ti-x"></i>
+        </button>
+      </div>
+
+      <form id="edit-medication-form" onsubmit="handleEditMedication(event)">
+        <input type="hidden" id="edit-med-id">
+        <div class="form-group">
+          <label class="field-label">Nom du médicament *</label>
+          <input type="text" class="field-input" id="edit-med-name" required>
+        </div>
+        <div class="form-group">
+          <label class="field-label">Dosage *</label>
+          <input type="text" class="field-input" id="edit-med-dosage" required>
+        </div>
+        <div class="form-group">
+          <label class="field-label">Horaire de prise *</label>
+          <div class="time-slots" id="edit-med-times">
+            <button type="button" class="time-slot" onclick="toggleEditTimeSlot(this)" data-time="matin">
+              <i class="ti ti-sun"></i><br>Matin
+            </button>
+            <button type="button" class="time-slot" onclick="toggleEditTimeSlot(this)" data-time="midi">
+              <i class="ti ti-bolt"></i><br>Midi
+            </button>
+            <button type="button" class="time-slot" onclick="toggleEditTimeSlot(this)" data-time="soir">
+              <i class="ti ti-moon"></i><br>Soir
+            </button>
+            <button type="button" class="time-slot" onclick="toggleEditTimeSlot(this)" data-time="nuit">
+              <i class="ti ti-star"></i><br>Nuit
+            </button>
+          </div>
+          <input type="hidden" id="edit-med-times-value" value="">
+        </div>
+        <div class="form-group">
+          <label class="field-label">Fréquence</label>
+          <select class="field-input" id="edit-med-frequency">
+            <option value="quotidien">Quotidien</option>
+            <option value="semaine">2 fois par semaine</option>
+            <option value="occasionnel">Occasionnel</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="field-label">Notes</label>
+          <textarea class="field-input" id="edit-med-notes" rows="3"></textarea>
+        </div>
+        <div style="display: flex; gap: var(--space-3);">
+          <button type="submit" class="btn btn-accent" style="flex: 1;">
+            <i class="ti ti-check"></i> Enregistrer
+          </button>
+          <button type="button" class="btn btn-danger" onclick="confirmDeleteMedication()">
+            <i class="ti ti-trash"></i> Supprimer
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================================================
+       TOAST CONTAINER
+       ============================================================================ -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- ============================================================================
+       FOOTER
+       ============================================================================ -->
+  <footer>
+    <div class="container">
+      <p style="margin: 0; font-size: var(--font-size-sm); opacity: 0.9;">
+        © 2026 PsychoGuide — ISSISO Sousse. Tous droits réservés. | 
+        <a href="#">Politique de Confidentialité</a> | 
+        <a href="#">Conditions d'Utilisation</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- ============================================================================
+       JAVASCRIPT
+       ============================================================================ -->
+  <script>
+    // ============================================================================
+    // STATE MANAGEMENT
+    // ============================================================================
+    const STORAGE_KEYS = {
+      USER: 'psychoguide_user',
+      CARNET: 'psychoguide_carnet',
+      MEDICATIONS: 'psychoguide_medications'
+    };
+
+    let currentUser = null;
+    let carnetEntries = [];
+    let medications = [];
+
+    // ============================================================================
+    // INITIALIZATION
+    // ============================================================================
+    document.addEventListener('DOMContentLoaded', () => {
+      loadUserData();
+      updateUIForAuthState();
+      setupEventListeners();
+    });
+
+    function loadUserData() {
+      const userData = localStorage.getItem(STORAGE_KEYS.USER);
+      if (userData) {
+        currentUser = JSON.parse(userData);
+        carnetEntries = JSON.parse(localStorage.getItem(STORAGE_KEYS.CARNET)) || [];
+        medications = JSON.parse(localStorage.getItem(STORAGE_KEYS.MEDICATIONS)) || [];
+      }
+    }
+
+    function saveUserData() {
+      localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(currentUser));
+      localStorage.setItem(STORAGE_KEYS.CARNET, JSON.stringify(carnetEntries));
+      localStorage.setItem(STORAGE_KEYS.MEDICATIONS, JSON.stringify(medications));
+    }
+
+    function updateUIForAuthState() {
+      const loginBtn = document.getElementById('login-btn');
+      const userBtn = document.getElementById('user-btn');
+      const userName = document.getElementById('user-name');
+      const dashboardUserName = document.getElementById('dashboard-user-name');
+
+      if (currentUser) {
+        loginBtn.classList.add('hidden');
+        userBtn.classList.remove('hidden');
+        const displayName = currentUser.prenom || currentUser.nom || 'Utilisateur';
+        userName.textContent = displayName;
+        if (dashboardUserName) dashboardUserName.textContent = displayName;
+        document.body.classList.add('account-view');
+        document.getElementById('dashboard').classList.add('active');
+        renderCarnetList();
+        renderMedicationList();
+      } else {
+        loginBtn.classList.remove('hidden');
+        userBtn.classList.add('hidden');
+        document.body.classList.remove('account-view');
+        document.getElementById('dashboard').classList.remove('active');
+      }
+    }
+
+    // ============================================================================
+    // EVENT LISTENERS
+    // ============================================================================
+    function setupEventListeners() {
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href === '#' || !document.querySelector(href)) return;
+          e.preventDefault();
+          const target = document.querySelector(href);
+          const headerHeight = document.getElementById('header').offsetHeight;
+          const targetPosition = target.offsetTop - headerHeight;
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        });
+      });
+
+      // Header shrink on scroll
+      const header = document.getElementById('header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          header.classList.add('shrink');
+        } else {
+          header.classList.remove('shrink');
+        }
+      }, { passive: true });
+
+      // Close modals on escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeAllModals();
+        }
+      });
+
+      // Close modals on overlay click
+      document.querySelectorAll('.modal-overlay').forEach(overlay => {
+        overlay.addEventListener('click', (e) => {
+          if (e.target === overlay) {
+            closeAllModals();
+          }
+        });
+      });
+    }
+
+    // ============================================================================
+    // MOBILE MENU
+    // ============================================================================
+    function toggleMobileMenu() {
+      const mobileNav = document.getElementById('mobile-nav');
+      const menuToggle = document.getElementById('menu-toggle');
+      mobileNav.classList.toggle('active');
+      const isOpen = mobileNav.classList.contains('active');
+      menuToggle.querySelector('i').className = isOpen ? 'ti ti-x' : 'ti ti-menu-2';
+    }
+
+    // ============================================================================
+    // AUTH MODAL
+    // ============================================================================
+    function openAuthModal() {
+      document.getElementById('auth-modal').classList.add('active');
+      resetAuthForms();
+    }
+
+    function closeAuthModal() {
+      document.getElementById('auth-modal').classList.remove('active');
+    }
+
+    function switchAuthTab(tab) {
+      const loginTab = document.getElementById('tab-login');
+      const registerTab = document.getElementById('tab-register');
+      const loginForm = document.getElementById('login-form');
+      const registerForm = document.getElementById('register-form');
+      const modalTitle = document.getElementById('auth-modal-title');
+
+      if (tab === 'login') {
+        loginTab.classList.add('active');
+        registerTab.classList.remove('active');
+        loginForm.classList.remove('hidden');
+        registerForm.classList.add('hidden');
+        modalTitle.textContent = 'Connexion';
+      } else {
+        loginTab.classList.remove('active');
+        registerTab.classList.add('active');
+        loginForm.classList.add('hidden');
+        registerForm.classList.remove('hidden');
+        modalTitle.textContent = 'Inscription';
+      }
+    }
+
+    function resetAuthForms() {
+      document.getElementById('login-form').reset();
+      document.getElementById('register-form').reset();
+      switchAuthTab('login');
+    }
+
+    // ============================================================================
+    // AUTH HANDLERS
+    // ============================================================================
+    function handleLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value.trim();
+      const password = document.getElementById('login-password').value;
+
+      // Simple validation
+      if (!email || !password) {
+        showToast('Veuillez remplir tous les champs', 'error');
+        return;
+      }
+
+      // Check for existing user (demo - in production, this would be an API call)
+      const users = JSON.parse(localStorage.getItem('psychoguide_users') || '[]');
+      const user = users.find(u => u.email === email);
+
+      if (!user) {
+        showToast('Email ou mot de passe incorrect', 'error');
+        return;
+      }
+
+      // Verify password
+      if (user.password !== password) {
+        showToast('Email ou mot de passe incorrect', 'error');
+        return;
+      }
+
+      // Login successful
+      currentUser = { id: user.id, email: user.email, prenom: user.prenom, nom: user.nom };
+      carnetEntries = user.carnet || [];
+      medications = user.medications || [];
+      saveUserData();
+      updateUIForAuthState();
+      closeAuthModal();
+      document.getElementById('dashboard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function handleRegister(e) {
+      e.preventDefault();
+      const prenom = document.getElementById('register-prenom').value.trim();
+      const nom = document.getElementById('register-nom').value.trim();
+      const email = document.getElementById('register-email').value.trim();
+      const password = document.getElementById('register-password').value;
+      const confirm = document.getElementById('register-confirm').value;
+
+      // Validation
+      if (!prenom || !nom || !email || !password) {
+        showToast('Veuillez remplir tous les champs', 'error');
+        return;
+      }
+
+      if (password !== confirm) {
+        showToast('Les mots de passe ne correspondent pas', 'error');
+        return;
+      }
+
+      if (password.length < 6) {
+        showToast('Le mot de passe doit contenir au moins 6 caractères', 'error');
+        return;
+      }
+
+      // Check if email already exists
+      const users = JSON.parse(localStorage.getItem('psychoguide_users') || '[]');
+      if (users.find(u => u.email === email)) {
+        showToast('Cet email est déjà utilisé', 'error');
+        return;
+      }
+
+      // Create new user
+      const newUser = {
+        id: Date.now().toString(),
+        email,
+        password,
+        prenom,
+        nom,
+        carnet: [],
+        medications: []
+      };
+
+      users.push(newUser);
+      localStorage.setItem('psychoguide_users', JSON.stringify(users));
+
+      // Auto login
+      currentUser = { id: newUser.id, email: newUser.email, prenom: newUser.prenom, nom: newUser.nom };
+      carnetEntries = [];
+      medications = [];
+      saveUserData();
+      updateUIForAuthState();
+      closeAuthModal();
+      document.getElementById('dashboard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function logout() {
+      if (!confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) return;
+
+      // Save current user's data before logout
+      if (currentUser) {
+        const users = JSON.parse(localStorage.getItem('psychoguide_users') || '[]');
+        const userIndex = users.findIndex(u => u.id === currentUser.id);
+        if (userIndex !== -1) {
+          users[userIndex].carnet = carnetEntries;
+          users[userIndex].medications = medications;
+          localStorage.setItem('psychoguide_users', JSON.stringify(users));
+        }
+      }
+
+      currentUser = null;
+      carnetEntries = [];
+      medications = [];
+      localStorage.removeItem(STORAGE_KEYS.USER);
+      localStorage.removeItem(STORAGE_KEYS.CARNET);
+      localStorage.removeItem(STORAGE_KEYS.MEDICATIONS);
+      updateUIForAuthState();
+
+      document.getElementById('accueil').scrollIntoView({ behavior: 'smooth' });
+
+      showToast('Vous êtes déconnecté', 'info');
+    }
+
+    // ============================================================================
+    // DASHBOARD
+    // ============================================================================
+    function openDashboard() {
+      if (!currentUser) {
+        openAuthModal();
+        return;
+      }
+      document.getElementById('dashboard').classList.add('active');
+      document.body.classList.add('account-view');
+      document.getElementById('dashboard').scrollIntoView({ behavior: 'smooth' });
+      renderCarnetList();
+      renderMedicationList();
+    }
+
+    // ============================================================================
+    // CARNET MODAL & HANDLERS
+    // ============================================================================
+    function openAddCarnetModal() {
+      document.getElementById('carnet-modal').classList.add('active');
+      document.getElementById('carnet-form').reset();
+    }
+
+    function closeCarnetModal() {
+      document.getElementById('carnet-modal').classList.remove('active');
+    }
+
+    function handleAddCarnet(e) {
+      e.preventDefault();
+      const type = document.getElementById('carnet-type').value;
+      const title = document.getElementById('carnet-title').value.trim();
+      const description = document.getElementById('carnet-description').value.trim();
+
+      if (!title) {
+        showToast('Veuillez entrer un titre', 'error');
+        return;
+      }
+
+      const entry = {
+        id: Date.now().toString(),
+        type,
+        title,
+        description,
+        date: new Date().toISOString()
+      };
+
+      carnetEntries.push(entry);
+      saveUserData();
+      closeCarnetModal();
+      renderCarnetList();
+      showToast('Entrée ajoutée avec succès !', 'success');
+    }
+
+    function deleteCarnetEntry(id) {
+      if (!confirm('Supprimer cette entrée ?')) return;
+      carnetEntries = carnetEntries.filter(e => e.id !== id);
+      saveUserData();
+      renderCarnetList();
+      showToast('Entrée supprimée', 'info');
+    }
+
+    function renderCarnetList() {
+      const list = document.getElementById('carnet-list');
+
+      if (carnetEntries.length === 0) {
+        list.innerHTML = `
+          <div class="empty-state">
+            <i class="ti ti-notebook"></i>
+            <p>Aucune entrée dans votre carnet. Ajoutez votre première note !</p>
+          </div>
+        `;
+        return;
+      }
+
+      const typeLabels = {
+        'note': 'Note',
+        'observation': 'Observation',
+        'rendez-vous': 'Rendez-vous',
+        'symptome': 'Symptôme'
+      };
+
+      const typeIcons = {
+        'note': 'ti-note',
+        'observation': 'ti-eye',
+        'rendez-vous': 'ti-calendar',
+        'symptome': 'ti-heartbeat'
+      };
+
+      list.innerHTML = carnetEntries
+        .sort((a, b) => new Date(b.date) - new Date(a.date))
+        .map(entry => `
+          <div class="carnet-item">
+            <div style="flex: 1;">
+              <span class="carnet-type ${entry.type}">
+                <i class="ti ${typeIcons[entry.type] || 'ti-note'}" style="margin-right: 4px;"></i>
+                ${typeLabels[entry.type] || 'Note'}
+              </span>
+              <div class="carnet-title">${escapeHtml(entry.title)}</div>
+              ${entry.description ? `<div class="carnet-description">${escapeHtml(entry.description)}</div>` : ''}
+              <div class="carnet-date">
+                <i class="ti ti-clock"></i> ${formatDate(entry.date)}
+              </div>
+            </div>
+            <button onclick="deleteCarnetEntry('${entry.id}')" style="background: none; border: none; cursor: pointer; color: var(--color-text-secondary); padding: 8px;" title="Supprimer">
+              <i class="ti ti-trash"></i>
+            </button>
+          </div>
+        `).join('');
+    }
+
+    // ============================================================================
+    // MEDICATION MODAL & HANDLERS
+    // ============================================================================
+    function openAddMedicationModal() {
+      document.getElementById('medication-modal').classList.add('active');
+      document.getElementById('medication-form').reset();
+      // Reset time slots
+      document.querySelectorAll('#medication-modal .time-slot').forEach(slot => {
+        slot.classList.remove('active');
+      });
+      document.getElementById('med-times').value = '';
+    }
+
+    function closeMedicationModal() {
+      document.getElementById('medication-modal').classList.remove('active');
+    }
+
+    function toggleTimeSlot(btn) {
+      btn.classList.toggle('active');
+      updateTimesValue();
+    }
+
+    function updateTimesValue() {
+      const activeSlots = document.querySelectorAll('#medication-modal .time-slot.active');
+      const times = Array.from(activeSlots).map(slot => slot.dataset.time);
+      document.getElementById('med-times').value = times.join(',');
+    }
+
+    function handleAddMedication(e) {
+      e.preventDefault();
+      const name = document.getElementById('med-name').value.trim();
+      const dosage = document.getElementById('med-dosage').value.trim();
+      const timesValue = document.getElementById('med-times').value;
+      const frequency = document.getElementById('med-frequency').value;
+      const notes = document.getElementById('med-notes').value.trim();
+
+      if (!name || !dosage) {
+        showToast('Veuillez remplir les champs obligatoires', 'error');
+        return;
+      }
+
+      if (!timesValue) {
+        showToast('Veuillez sélectionner au moins un horaire', 'error');
+        return;
+      }
+
+      const medication = {
+        id: Date.now().toString(),
+        name,
+        dosage,
+        times: timesValue.split(','),
+        frequency,
+        notes,
+        dateAdded: new Date().toISOString()
+      };
+
+      medications.push(medication);
+      saveUserData();
+      closeMedicationModal();
+      renderMedicationList();
+      showToast('Médicament ajouté avec succès !', 'success');
+    }
+
+    // ============================================================================
+    // EDIT MEDICATION MODAL & HANDLERS
+    // ============================================================================
+    let editingMedicationId = null;
+
+    function openEditMedicationModal(id) {
+      const medication = medications.find(m => m.id === id);
+      if (!medication) return;
+
+      editingMedicationId = id;
+      document.getElementById('edit-med-id').value = id;
+      document.getElementById('edit-med-name').value = medication.name;
+      document.getElementById('edit-med-dosage').value = medication.dosage;
+      document.getElementById('edit-med-frequency').value = medication.frequency;
+      document.getElementById('edit-med-notes').value = medication.notes || '';
+
+      // Set time slots
+      document.querySelectorAll('#edit-med-times .time-slot').forEach(slot => {
+        slot.classList.remove('active');
+        if (medication.times.includes(slot.dataset.time)) {
+          slot.classList.add('active');
+        }
+      });
+      document.getElementById('edit-med-times-value').value = medication.times.join(',');
+
+      document.getElementById('edit-medication-modal').classList.add('active');
+    }
+
+    function closeEditMedicationModal() {
+      document.getElementById('edit-medication-modal').classList.remove('active');
+      editingMedicationId = null;
+    }
+
+    function toggleEditTimeSlot(btn) {
+      btn.classList.toggle('active');
+      updateEditTimesValue();
+    }
+
+    function updateEditTimesValue() {
+      const activeSlots = document.querySelectorAll('#edit-med-times .time-slot.active');
+      const times = Array.from(activeSlots).map(slot => slot.dataset.time);
+      document.getElementById('edit-med-times-value').value = times.join(',');
+    }
+
+    function handleEditMedication(e) {
+      e.preventDefault();
+      const id = document.getElementById('edit-med-id').value;
+      const name = document.getElementById('edit-med-name').value.trim();
+      const dosage = document.getElementById('edit-med-dosage').value.trim();
+      const timesValue = document.getElementById('edit-med-times-value').value;
+      const frequency = document.getElementById('edit-med-frequency').value;
+      const notes = document.getElementById('edit-med-notes').value.trim();
+
+      if (!name || !dosage || !timesValue) {
+        showToast('Veuillez remplir les champs obligatoires', 'error');
+        return;
+      }
+
+      const index = medications.findIndex(m => m.id === id);
+      if (index !== -1) {
+        medications[index] = {
+          ...medications[index],
+          name,
+          dosage,
+          times: timesValue.split(','),
+          frequency,
+          notes
+        };
+        saveUserData();
+        closeEditMedicationModal();
+        renderMedicationList();
+        showToast('Médicament modifié avec succès !', 'success');
+      }
+    }
+
+    function confirmDeleteMedication() {
+      if (!confirm('Êtes-vous sûr de vouloir supprimer ce médicament ?')) return;
+      deleteMedication(editingMedicationId);
+    }
+
+    function deleteMedication(id) {
+      medications = medications.filter(m => m.id !== id);
+      saveUserData();
+      closeEditMedicationModal();
+      renderMedicationList();
+      showToast('Médicament supprimé', 'info');
+    }
+
+    function renderMedicationList() {
+      const list = document.getElementById('medication-list');
+
+      if (medications.length === 0) {
+        list.innerHTML = `
+          <div class="empty-state">
+            <i class="ti ti-pill"></i>
+            <p>Aucun médicament ajouté. Cliquez ci-dessous pour en ajouter.</p>
+          </div>
+        `;
+        return;
+      }
+
+      const timeLabels = {
+        'matin': { label: 'Matin', badge: 'badge-matin' },
+        'midi': { label: 'Midi', badge: 'badge-midi' },
+        'soir': { label: 'Soir', badge: 'badge-soir' },
+        'nuit': { label: 'Nuit', badge: 'badge-nuit' }
+      };
+
+      list.innerHTML = medications.map(med => `
+        <div class="medication-item">
+          <div class="medication-info">
+            <div class="medication-name">${escapeHtml(med.name)}</div>
+            <div class="medication-details">${escapeHtml(med.dosage)}</div>
+            <div style="margin-top: 8px;">
+              ${med.times.map(time => {
+                const t = timeLabels[time] || { label: time, badge: 'badge-matin' };
+                return `<span class="badge ${t.badge}">${t.label}</span>`;
+              }).join(' ')}
+            </div>
+            ${med.notes ? `<div class="medication-details" style="margin-top: 4px; font-style: italic;">${escapeHtml(med.notes)}</div>` : ''}
+          </div>
+          <div class="medication-actions">
+            <button onclick="openEditMedicationModal('${med.id}')" title="Modifier">
+              <i class="ti ti-pencil"></i>
+            </button>
+            <button class="delete" onclick="if(confirm('Supprimer ce médicament ?')) deleteMedication('${med.id}')" title="Supprimer">
+              <i class="ti ti-trash"></i>
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // ============================================================================
+    // FAQ
+    // ============================================================================
+    function toggleFaq(button) {
+      const item = button.closest('.faq-item');
+      const isOpen = item.classList.contains('active');
+
+      // Close all items
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('active');
+        i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+      });
+
+      // Toggle current
+      if (!isOpen) {
+        item.classList.add('active');
+        button.setAttribute('aria-expanded', 'true');
+      }
+    }
+
+    // ============================================================================
+    // CONTACT FORM
+    // ============================================================================
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      showToast('Message envoyé avec succès ! Nous vous répondrons bientôt.', 'success');
+      e.target.reset();
+    }
+
+    // ============================================================================
+    // UTILITIES
+    // ============================================================================
+    function closeAllModals() {
+      document.querySelectorAll('.modal-overlay').forEach(modal => {
+        modal.classList.remove('active');
+      });
+    }
+
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+
+      const icons = {
+        success: 'ti ti-check',
+        error: 'ti ti-x',
+        info: 'ti ti-info-circle'
+      };
+
+      toast.innerHTML = `
+        <i class="${icons[type] || icons.info}"></i>
+        <span>${escapeHtml(message)}</span>
+      `;
+
+      container.appendChild(toast);
+
+      // Auto remove after 4 seconds
+      setTimeout(() => {
+        toast.style.animation = 'slideIn 0.3s ease-out reverse';
+        setTimeout(() => toast.remove(), 300);
+      }, 4000);
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('fr-FR', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+    }
+  </script>
+</body>
+</html>
