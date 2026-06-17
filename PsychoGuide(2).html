@@ -471,6 +471,7 @@
       background: rgba(255, 255, 255, 0.05);
       border-radius: 50%;
       transform: translate(100px, -100px);
+      animation: heroFloat 14s ease-in-out infinite;
     }
 
     .hero-section::after {
@@ -483,6 +484,7 @@
       background: rgba(255, 255, 255, 0.03);
       border-radius: 50%;
       transform: translate(-100px, 100px);
+      animation: heroFloatReverse 18s ease-in-out infinite;
     }
 
     .hero-content {
@@ -496,6 +498,7 @@
       font-size: var(--font-size-4xl);
       margin-bottom: var(--space-4);
       font-weight: var(--font-weight-bold);
+      animation: heroRise 0.9s ease-out both;
     }
 
     .hero-section .hero-subtitle {
@@ -503,6 +506,7 @@
       margin-bottom: var(--space-8);
       opacity: 0.95;
       line-height: var(--line-height-relaxed);
+      animation: heroRise 0.9s ease-out 0.12s both;
     }
 
     .hero-stats {
@@ -518,6 +522,26 @@
       padding: var(--space-6);
       border-radius: var(--radius-xl);
       border: 1px solid rgba(255, 255, 255, 0.2);
+      animation: heroCardPop 0.75s ease-out both;
+      transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      background: rgba(255, 255, 255, 0.14);
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.14);
+    }
+
+    .hero-stats .stat-card:nth-child(2) {
+      animation-delay: 0.08s;
+    }
+
+    .hero-stats .stat-card:nth-child(3) {
+      animation-delay: 0.16s;
+    }
+
+    .hero-stats .stat-card:nth-child(4) {
+      animation-delay: 0.24s;
     }
 
     .stat-number {
@@ -536,6 +560,83 @@
       gap: var(--space-4);
       justify-content: center;
       flex-wrap: wrap;
+      animation: heroRise 0.9s ease-out 0.3s both;
+    }
+
+    .hero-cta .btn {
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    }
+
+    .hero-cta .btn:hover {
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.14);
+    }
+
+    @keyframes heroRise {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes heroCardPop {
+      from {
+        opacity: 0;
+        transform: translateY(22px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes cardRise {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes heroFloat {
+      0%, 100% {
+        transform: translate(100px, -100px) scale(1);
+      }
+      50% {
+        transform: translate(82px, -82px) scale(1.06);
+      }
+    }
+
+    @keyframes heroFloatReverse {
+      0%, 100% {
+        transform: translate(-100px, 100px) scale(1);
+      }
+      50% {
+        transform: translate(-82px, 82px) scale(1.04);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-section::before,
+      .hero-section::after,
+      .hero-section h1,
+      .hero-section .hero-subtitle,
+      .stat-card,
+      .hero-cta {
+        animation: none !important;
+      }
+
+      .hero-cta .btn,
+      .stat-card {
+        transition: none !important;
+      }
     }
 
     @media (max-width: 768px) {
@@ -838,7 +939,7 @@
       max-width: 1560px;
     }
 
-    body.account-view main > section:not(#dashboard),
+    body.account-view main > section:not(#dashboard):not(#public-medications),
     body.account-view footer {
       display: none !important;
     }
@@ -894,6 +995,103 @@
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 30px;
+    }
+
+    .public-medications-section {
+      padding: 64px 0 72px;
+      background: linear-gradient(180deg, #f6fbff 0%, #eef6fb 100%);
+      border-top: 1px solid #dfe9f2;
+      border-bottom: 1px solid #dfe9f2;
+    }
+
+    .public-medications-header {
+      max-width: 920px;
+      margin: 0 auto 28px;
+      text-align: center;
+    }
+
+    .public-medications-header h2 {
+      margin: 0 0 10px;
+      font-size: 34px;
+      color: #0f2740;
+    }
+
+    .public-medications-header p {
+      margin: 0;
+      color: #647085;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .public-medications-panel {
+      background: white;
+      border: 1px solid #dce3ea;
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 14px 32px rgba(15, 39, 64, 0.06);
+    }
+
+    .public-medications-toolbar {
+      margin-bottom: 0;
+    }
+
+    .public-medications-list {
+      margin-top: 22px;
+    }
+
+    .public-medications-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .public-medication-card {
+      border: 1px solid #dce3ea;
+      border-radius: 20px;
+      background: linear-gradient(180deg, #ffffff 0%, #f9fcff 100%);
+      padding: 20px;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+      animation: cardRise 0.55s ease both;
+    }
+
+    .public-medication-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 30px rgba(15, 39, 64, 0.10);
+      border-color: #b5cde0;
+    }
+
+    .public-medication-card h3 {
+      margin: 0 0 6px;
+      font-size: 20px;
+      color: #0f2740;
+    }
+
+    .public-medication-card .spec {
+      color: var(--color-accent);
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    .public-medication-card p {
+      margin: 0;
+      color: #647085;
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .public-medication-card .meta {
+      margin-top: 14px;
+      font-size: 13px;
+      color: #0f2740;
+    }
+
+    .public-medication-card .public-actions {
+      display: flex;
+      justify-content: flex-start;
+      margin-top: 16px;
     }
 
     .dashboard-card {
@@ -953,6 +1151,18 @@
         padding: 24px 0 44px;
       }
 
+      .public-medications-section {
+        padding: 42px 0 52px;
+      }
+
+      .public-medications-header h2 {
+        font-size: 26px;
+      }
+
+      .public-medications-header p {
+        font-size: 16px;
+      }
+
       .dashboard-grid {
         grid-template-columns: 1fr;
         gap: 22px;
@@ -988,8 +1198,179 @@
        MEDICATION LIST STYLES
        ============================================================================ */
     .medication-list {
-      max-height: 400px;
-      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+
+    .medication-toolbar {
+      display: grid;
+      gap: var(--space-4);
+      margin-bottom: var(--space-5);
+    }
+
+    .medication-search {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      background: var(--color-background-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-3) var(--space-4);
+    }
+
+    .medication-search i {
+      color: var(--color-text-tertiary);
+    }
+
+    .medication-search input {
+      width: 100%;
+      border: none;
+      background: transparent;
+      padding: 0;
+      box-shadow: none;
+    }
+
+    .medication-filters {
+      display: flex;
+      gap: var(--space-2);
+      flex-wrap: wrap;
+    }
+
+    .medication-filter-btn {
+      border: 1px solid var(--color-border);
+      background: var(--color-background-card);
+      color: var(--color-text-secondary);
+      border-radius: var(--radius-full);
+      padding: 0.55rem 0.9rem;
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-semibold);
+      transition: var(--transition-fast);
+    }
+
+    .medication-filter-btn.active {
+      background: var(--color-accent);
+      color: var(--color-text-inverse);
+      border-color: var(--color-accent);
+    }
+
+    .medication-section {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .medication-section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-3);
+    }
+
+    .medication-section-title {
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text-primary);
+      margin: 0;
+    }
+
+    .medication-section-meta {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-tertiary);
+      white-space: nowrap;
+    }
+
+    .medication-catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: var(--space-3);
+    }
+
+    .medication-card {
+      background: var(--color-background-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-4);
+      box-shadow: var(--shadow-xs);
+      transition: var(--transition-base);
+      cursor: pointer;
+    }
+
+    .medication-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--color-accent-light);
+    }
+
+    .medication-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--space-3);
+      margin-bottom: var(--space-3);
+    }
+
+    .medication-card-title {
+      font-size: var(--font-size-base);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-1);
+    }
+
+    .medication-card-spec {
+      font-size: var(--font-size-xs);
+      color: var(--color-accent);
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--space-1);
+    }
+
+    .medication-card-desc,
+    .medication-card-extra {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-secondary);
+      line-height: var(--line-height-relaxed);
+    }
+
+    .medication-card-extra {
+      margin-top: var(--space-2);
+    }
+
+    .medication-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.3rem 0.65rem;
+      border-radius: var(--radius-full);
+      font-size: 0.7rem;
+      font-weight: var(--font-weight-bold);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .medication-card-actions {
+      display: flex;
+      gap: var(--space-2);
+      margin-top: var(--space-4);
+      flex-wrap: wrap;
+    }
+
+    .medication-card-actions button {
+      border: 1px solid var(--color-border);
+      background: var(--color-background-subtle);
+      color: var(--color-text-secondary);
+      border-radius: var(--radius-lg);
+      padding: 0.55rem 0.8rem;
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-semibold);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .medication-card-actions button.delete:hover {
+      color: var(--color-error);
+      border-color: rgba(239, 68, 68, 0.25);
+      background: rgba(239, 68, 68, 0.08);
     }
 
     .medication-item {
@@ -997,7 +1378,9 @@
       justify-content: space-between;
       align-items: flex-start;
       padding: var(--space-4);
-      border-bottom: 1px solid var(--color-border);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      background: var(--color-background-card);
       transition: background var(--transition-fast);
     }
 
@@ -1046,6 +1429,43 @@
 
     .medication-actions button.delete:hover {
       color: var(--color-danger);
+    }
+
+    .medication-detail-grid {
+      display: grid;
+      gap: var(--space-3);
+      margin-top: var(--space-4);
+    }
+
+    .followup-grid {
+      margin-top: 0;
+    }
+
+    .medication-detail-row {
+      background: var(--color-background-subtle);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-3);
+    }
+
+    .medication-detail-label {
+      display: block;
+      font-size: var(--font-size-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--color-text-tertiary);
+      margin-bottom: var(--space-1);
+      font-weight: var(--font-weight-bold);
+    }
+
+    .medication-detail-value {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-primary);
+      line-height: var(--line-height-relaxed);
+    }
+
+    .medication-detail-modal .modal {
+      max-width: 620px;
     }
 
     .empty-state {
@@ -1713,7 +2133,7 @@
 
         <div class="dashboard-grid">
           <!-- Carnet de Santé Card -->
-          <div class="dashboard-card">
+          <div class="dashboard-card" id="carnet-section">
             <h3>
               <i class="ti ti-notebook"></i>
               Mon Carnet de Santé
@@ -1721,7 +2141,7 @@
             <p class="text-secondary mb-4">
               Ajoutez des notes, des observations et suivez votre parcours de santé.
             </p>
-            
+
             <div id="carnet-list" class="carnet-list">
               <div class="empty-state">
                 <i class="ti ti-notebook"></i>
@@ -1735,14 +2155,43 @@
           </div>
 
           <!-- Médicaments Card -->
-          <div class="dashboard-card">
+          <div class="dashboard-card" id="medication-catalog-section">
             <h3>
               <i class="ti ti-pill"></i>
               Mes Médicaments
             </h3>
             <p class="text-secondary mb-4">
-              Suivez vos traitements et horaires de prise.
+              Suivez vos traitements et explorez le catalogue psychotrope de référence.
             </p>
+
+            <div class="medication-toolbar">
+              <div class="medication-search">
+                <i class="ti ti-search"></i>
+                <input type="text" id="catalog-search" placeholder="Rechercher un médicament..." oninput="setMedicationCatalogQuery(this.value)">
+              </div>
+              <div class="medication-filters">
+                <button type="button" class="medication-filter-btn active" id="catalog-filter-all" onclick="setMedicationCatalogFilter('all')">Tout</button>
+                <button type="button" class="medication-filter-btn" id="catalog-filter-antipsycho" onclick="setMedicationCatalogFilter('antipsycho')">Antipsychotiques</button>
+                <button type="button" class="medication-filter-btn" id="catalog-filter-antidep" onclick="setMedicationCatalogFilter('antidep')">Antidépresseurs</button>
+                <button type="button" class="medication-filter-btn" id="catalog-filter-bzd" onclick="setMedicationCatalogFilter('bzd')">BZD/Hypnotiques</button>
+                <button type="button" class="medication-filter-btn" id="catalog-filter-thymo" onclick="setMedicationCatalogFilter('thymo')">Thymorégulateurs</button>
+              </div>
+            </div>
+
+            <div class="medication-section">
+              <div class="medication-section-header">
+                <h4 class="medication-section-title">Catalogue PsychoGuide</h4>
+                <span class="medication-section-meta" id="catalog-count">0 médicaments</span>
+              </div>
+              <div id="medication-catalog" class="medication-catalog-grid"></div>
+            </div>
+
+            <div class="medication-section">
+              <div class="medication-section-header">
+                <h4 class="medication-section-title">Mes médicaments</h4>
+                <span class="medication-section-meta">Ajouts personnels</span>
+              </div>
+            </div>
             
             <div id="medication-list" class="medication-list">
               <div class="empty-state">
@@ -1753,6 +2202,36 @@
 
             <button class="btn btn-accent w-full mt-4" onclick="openAddMedicationModal()">
               <i class="ti ti-plus"></i> Ajouter un Médicament
+            </button>
+          </div>
+
+          <!-- Suivi Médical Card -->
+          <div class="dashboard-card">
+            <h3>
+              <i class="ti ti-heartbeat"></i>
+              Suivi Médical
+            </h3>
+            <p class="text-secondary mb-4">
+              Suivez les effets, la tolérance et les rendez-vous liés au traitement.
+            </p>
+
+            <div class="medication-detail-grid followup-grid">
+              <div class="medication-detail-row">
+                <span class="medication-detail-label">Observance</span>
+                <div class="medication-detail-value">Vérifiez la prise quotidienne, les oublis et les horaires réellement suivis.</div>
+              </div>
+              <div class="medication-detail-row">
+                <span class="medication-detail-label">Effets indésirables</span>
+                <div class="medication-detail-value">Notez la somnolence, les vertiges, les nausées, les tremblements ou tout autre effet nouveau.</div>
+              </div>
+              <div class="medication-detail-row">
+                <span class="medication-detail-label">Surveillance</span>
+                <div class="medication-detail-value">Conservez les contrôles à suivre: TA, poids, ECG, bilans sanguins et rendez-vous programmés.</div>
+              </div>
+            </div>
+
+            <button class="btn btn-accent w-full mt-4" onclick="openAddCarnetModal()">
+              <i class="ti ti-clipboard-plus"></i> Ajouter une observation
             </button>
           </div>
         </div>
@@ -1769,6 +2248,25 @@
   <!-- ============================================================================
        AUTH MODAL (Login/Register)
        ============================================================================ -->
+
+  <!-- ============================================================================
+       MEDICATION CATALOG DETAIL MODAL
+       ============================================================================ -->
+  <div id="catalog-medication-modal" class="modal-overlay medication-detail-modal">
+    <div class="modal" style="max-width: 620px;">
+      <div class="modal-header">
+        <h2>
+          <i class="ti ti-pill" style="color: var(--color-accent);"></i>
+          <span id="catalog-modal-title">Médicament</span>
+        </h2>
+        <button class="modal-close" onclick="closeMedicationCatalogDetail()">
+          <i class="ti ti-x"></i>
+        </button>
+      </div>
+
+      <div id="catalog-modal-body"></div>
+    </div>
+  </div>
   <div id="auth-modal" class="modal-overlay">
     <div class="modal" style="max-width: 450px;">
       <div class="modal-header">
@@ -2038,6 +2536,45 @@
     let currentUser = null;
     let carnetEntries = [];
     let medications = [];
+    let medicationCatalogFilter = 'all';
+    let medicationCatalogQuery = '';
+    let pendingSectionScroll = null;
+
+    const medicationCatalogThemes = {
+      antipsycho: { cb: '#EEEDFE', ct: '#3C3489', cl: 'Antipsychotique' },
+      antidep: { cb: '#E3F5EE', ct: '#085041', cl: 'Antidépresseur' },
+      bzd: { cb: '#FEF8E7', ct: '#633806', cl: 'BZD/Hypnotique' },
+      thymo: { cb: '#EBF4FD', ct: '#0C447C', cl: 'Thymorégulateur' }
+    };
+
+    const medicationCatalog = [
+      { id: 'diaz', name: 'Diazépam', spec: 'Valium®, Diazépam®', classe: 'bzd', ind: 'Anxiété, sevrage alcoolique, épilepsie, myorelaxant', voies: 'PO, IM, IV, Rectal', dose: '5–10 mg', surv: 'FR, SpO2, sédation, TA, risque chutes', ei: 'Somnolence, confusion, dépendance, ataxie', conduite: 'Oxygène si détresse respiratoire. Flumazénil si surdosage. Prévention chutes.' },
+      { id: 'alpra', name: 'Alprazolam', spec: 'Xanax®, Alprazolam®', classe: 'bzd', ind: 'Anxiété sévère, trouble panique', voies: 'PO', dose: '0,25–0,5 mg 3x/j', surv: 'Sédation, dépendance, chutes, mémoire', ei: 'Somnolence, amnésie antérograde, tolérance', conduite: 'Max 4 semaines. Ne pas arrêter brutalement.' },
+      { id: 'lora', name: 'Lorazépam', spec: 'Temesta®, Lorazépam®', classe: 'bzd', ind: 'Anxiété, insomnie, prémédication', voies: 'PO, IM, IV', dose: '1–2,5 mg/j', surv: 'FR, TA, sédation, confusion', ei: 'Somnolence, faiblesse musculaire, amnésie', conduite: 'Surveillance accrue sujet âgé. Risque chute majoré.' },
+      { id: 'clona', name: 'Clonazépam', spec: 'Rivotril®', classe: 'bzd', ind: 'Épilepsie, trouble panique, anxiété', voies: 'PO, IV urgences', dose: '0,5–2 mg/j', surv: 'FR, sédation, dépendance', ei: 'Somnolence, ataxie, troubles du comportement', conduite: 'Ne jamais arrêter brutalement (risque état de mal épileptique).' },
+      { id: 'broma', name: 'Bromazépam', spec: 'Lexomil®', classe: 'bzd', ind: 'Anxiété, troubles du sommeil', voies: 'PO', dose: '3–6 mg/j', surv: 'Sédation, dépendance, chutes', ei: 'Somnolence, dépendance, amnésie', conduite: 'Utilisation courte durée. Surveiller dépendance. Ne pas arrêter brutalement.' },
+      { id: 'zolp', name: 'Zolpidem', spec: 'Stilnox®', classe: 'bzd', ind: 'Insomnie', voies: 'PO', dose: '5–10 mg au coucher', surv: 'Sédation, confusion sujet âgé', ei: 'Somnolence diurne, amnésie, hallucinations', conduite: 'Au coucher uniquement. Max 4 semaines.' },
+      { id: 'hydr', name: 'Hydroxyzine', spec: 'Atarax®', classe: 'bzd', ind: 'Anxiété (alternative non BZD)', voies: 'PO, IM', dose: '25–100 mg/j', surv: 'Sédation, bouche sèche, confusion', ei: 'Somnolence, sécheresse buccale, constipation', conduite: 'Alternative recommandée sujet âgé (pas de dépendance).' },
+      { id: 'halop', name: 'Halopéridol', spec: 'Haldol®', classe: 'antipsycho', ind: 'Psychose aiguë, agitation sévère, délire', voies: 'PO, IM, IV', dose: '5–10 mg agitation aiguë', surv: 'TA, ECG (QT), EPS, température', ei: 'Dystonie aiguë, akinésie, syndrome malin', conduite: 'Surveiller EPS après injection. ECG si doses élevées.' },
+      { id: 'olan', name: 'Olanzapine', spec: 'Zyprexa®', classe: 'antipsycho', ind: 'Schizophrénie, trouble bipolaire', voies: 'PO, IM', dose: '10–20 mg/j', surv: 'Glycémie, poids, TA, bilan lipidique', ei: 'Prise de poids, sédation, syndrome métabolique', conduite: 'Surveillance glycémie et poids. Prévention chutes.' },
+      { id: 'risp', name: 'Rispéridone', spec: 'Risperdal®', classe: 'antipsycho', ind: 'Schizophrénie, autisme (agitation)', voies: 'PO, solution buvable, IM retard', dose: '2–6 mg/j', surv: 'TA orthostatique, prolactine, glycémie', ei: 'Prise poids, galactorrhée, hypotension', conduite: 'Surveiller TA debout. Dosage prolactine si galactorrhée.' },
+      { id: 'quet', name: 'Quétiapine', spec: 'Quetap®, Xeroquel®', classe: 'antipsycho', ind: 'Trouble bipolaire, schizophrénie, insomnie résistante', voies: 'PO', dose: '50–800 mg/j selon indication', surv: 'TA orthostatique, glycémie, poids', ei: 'Sédation puissante, prise poids, syndrome métabolique', conduite: 'Au coucher (effet sédatif). Glycémie régulière.' },
+      { id: 'cloza', name: 'Clozapine', spec: 'Leponex®', classe: 'antipsycho', ind: 'Schizophrénie résistante', voies: 'PO', dose: '150–600 mg/j titration lente', surv: 'NFS hebdo (agranulocytose), TA, température', ei: 'Neutropénie, prise poids, hypersalivation', conduite: 'NFS obligatoire selon protocole. Fièvre = urgence NFS.' },
+      { id: 'amisu', name: 'Amisulpride', spec: 'Solian®', classe: 'antipsycho', ind: 'Schizophrénie, dépression négative', voies: 'PO', dose: '50–1200 mg/j', surv: 'ECG (QT), prolactine, poids', ei: 'Prise poids, galactorrhée, allongement QT', conduite: 'ECG régulier. Dosage prolactine si symptômes.' },
+      { id: 'arip', name: 'Aripiprazole', spec: 'Abilify®', classe: 'antipsycho', ind: 'Schizophrénie, trouble bipolaire', voies: 'PO, IM', dose: '10–30 mg/j', surv: 'TA, glycémie, poids, ECG', ei: 'Nausées, insomnie, agitation, prise poids modérée', conduite: 'Meilleur profil métabolique. Peut se prendre le matin.' },
+      { id: 'pima', name: 'Pimavansérine', spec: 'Nuplazid®', classe: 'antipsycho', ind: 'Psychose liée à la maladie de Parkinson', voies: 'PO', dose: '34 mg/j', surv: 'ECG (QT), confusion, chutes', ei: 'Allongement QT, oedèmes, confusion', conduite: 'Uniquement dans la psychose parkinsonienne. ECG avant traitement. Surveiller confusion.' },
+      { id: 'chlor', name: 'Chlorpromazine', spec: 'Largactil®', classe: 'antipsycho', ind: 'Psychose, nausées réfractaires, hoquet rebelle', voies: 'PO, IM', dose: '75–300 mg/j', surv: 'TA, ECG, EPS, photosensibilité', ei: 'Hypotension orthostatique, sédation, EPS, photosensibilité', conduite: 'Protection solaire obligatoire. Surveiller TA debout.' },
+      { id: 'fluox', name: 'Fluoxétine', spec: 'Prozac®, Fluctine®', classe: 'antidep', ind: 'Dépression, TOC, boulimie, trouble panique', voies: 'PO', dose: '20–60 mg/j le matin', surv: 'Idées suicidaires début ttt, hyponatrémie', ei: 'Nausées, insomnie, agitation, baisse libido', conduite: 'Surveillance risque suicidaire 2 premières semaines. Prise le matin.' },
+      { id: 'sert', name: 'Sertraline', spec: 'Zoloft®', classe: 'antidep', ind: 'Dépression, TOC, anxiété, PTSD', voies: 'PO', dose: '50–200 mg/j', surv: 'Idées suicidaires, hyponatrémie, saignements', ei: 'Troubles digestifs, insomnie, agitation', conduite: 'Surveillance idées suicidaires. Risque hémorragique augmenté.' },
+      { id: 'escit', name: 'Escitalopram', spec: 'Seropram®', classe: 'antidep', ind: 'Dépression, anxiété généralisée, TOC', voies: 'PO', dose: '10–20 mg/j le matin', surv: 'Idées suicidaires, hyponatrémie, ECG (QT)', ei: 'Nausées, insomnie, allongement QT, baisse libido', conduite: 'ECG avant traitement si risque QT. Surveillance suicidaire début ttt. Prise le matin.' },
+      { id: 'venla', name: 'Venlafaxine', spec: 'Effexor®', classe: 'antidep', ind: 'Dépression sévère, anxiété généralisée', voies: 'PO LP', dose: '75–375 mg/j', surv: 'TA, ECG, idées suicidaires', ei: 'Nausées, insomnie, hypertension, sevrage', conduite: 'Surveiller TA. Ne jamais arrêter brutalement.' },
+      { id: 'dulo', name: 'Duloxétine', spec: 'Cymbalta®', classe: 'antidep', ind: 'Dépression, douleurs neuropathiques, anxiété généralisée', voies: 'PO', dose: '30–120 mg/j', surv: 'TA, bilan hépatique, idées suicidaires', ei: 'Nausées, bouche sèche, hypersudation, hypertension', conduite: 'Surveiller TA et bilan hépatique. Ne pas ouvrir les gélules. Sevrage progressif.' },
+      { id: 'amitri', name: 'Amitriptyline', spec: 'Laroxyl®', classe: 'antidep', ind: 'Dépression sévère, douleurs neuropathiques, migraine', voies: 'PO, IV', dose: '75–150 mg/j', surv: 'ECG, TA orthostatique, signes anticholinergiques', ei: 'Sécheresse buccale, constipation, rétention urinaire, arythmie', conduite: 'ECG avant traitement. Surveillance TA orthostatique. Risque surdosage élevé.' },
+      { id: 'mirt', name: 'Mirtazapine', spec: 'Norset®', classe: 'antidep', ind: 'Dépression sévère avec insomnie', voies: 'PO', dose: '15–45 mg/j', surv: 'Poids, sédation, bilan hépatique', ei: 'Sédation puissante, prise poids, vertiges', conduite: 'Au coucher (effet sédatif). Surveillance poids.' },
+      { id: 'lithi', name: 'Lithium', spec: 'Téralithe®', classe: 'thymo', ind: 'Trouble bipolaire — prophylaxie', voies: 'PO LP', dose: 'Lithémie cible : 0,6–1,2 mEq/L', surv: 'Lithémie, TSH, créatininémie, urémie', ei: 'Tremblements fins, polydipsie, polyurie, hypothyroïdie', conduite: 'Hydratation 2L/j. Lithémie régulière. Toxique > 1,5 mEq/L.' },
+      { id: 'valp', name: 'Valproate', spec: 'Dépakine®', classe: 'thymo', ind: 'Trouble bipolaire, épilepsie', voies: 'PO gastrorésistant, IV', dose: '500–2000 mg/j', surv: 'NFS, bilan hépatique, ammoniémie', ei: 'Tremblements, prise poids, alopécie, tératogène', conduite: 'Bilan hépatique et NFS. Contraception obligatoire.' },
+      { id: 'carba', name: 'Carbamazépine', spec: 'Tégrétol®', classe: 'thymo', ind: 'Épilepsie, névralgie, trouble bipolaire', voies: 'PO', dose: '400–1200 mg/j', surv: 'NFS, bilan hépatique, carbamazépinémie, ECG', ei: 'Vertiges, somnolence, rash cutané (risque Lyell), hyponatrémie', conduite: 'Arrêt immédiat si rash. NFS régulière. Interactions médicamenteuses majeures.' }
+    ];
 
     // ============================================================================
     // INITIALIZATION
@@ -2046,6 +2583,8 @@
       loadUserData();
       updateUIForAuthState();
       setupEventListeners();
+      renderPublicMedicationCatalog();
+      renderMedicationCatalog();
     });
 
     function loadUserData() {
@@ -2079,6 +2618,14 @@
         document.getElementById('dashboard').classList.add('active');
         renderCarnetList();
         renderMedicationList();
+        renderMedicationCatalog();
+        if (pendingSectionScroll) {
+          const target = pendingSectionScroll;
+          pendingSectionScroll = null;
+          setTimeout(() => {
+            document.getElementById(target)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 0);
+        }
       } else {
         loginBtn.classList.remove('hidden');
         userBtn.classList.add('hidden');
@@ -2610,6 +3157,145 @@
           </div>
         </div>
       `).join('');
+    }
+
+    function setMedicationCatalogFilter(filter) {
+      medicationCatalogFilter = filter;
+      document.querySelectorAll('.medication-filter-btn').forEach(btn => btn.classList.remove('active'));
+      const activeButton = document.getElementById(`catalog-filter-${filter}`) || document.getElementById('catalog-filter-all');
+      if (activeButton) {
+        activeButton.classList.add('active');
+      }
+      renderMedicationCatalog();
+    }
+
+    function setMedicationCatalogQuery(query) {
+      medicationCatalogQuery = query.trim().toLowerCase();
+      renderMedicationCatalog();
+    }
+
+    function renderMedicationCatalog() {
+      renderMedicationCatalogTo('medication-catalog', 'catalog-count', medicationCatalogFilter, medicationCatalogQuery);
+    }
+
+    function setPublicMedicationCatalogFilter(filter) {
+      publicMedicationCatalogFilter = filter;
+      document.querySelectorAll('#public-medications .medication-filter-btn').forEach(btn => btn.classList.remove('active'));
+      const activeButton = document.getElementById(`public-catalog-filter-${filter}`) || document.getElementById('public-catalog-filter-all');
+      if (activeButton) {
+        activeButton.classList.add('active');
+      }
+      renderPublicMedicationCatalog();
+    }
+
+    function setPublicMedicationCatalogQuery(query) {
+      publicMedicationCatalogQuery = query.trim().toLowerCase();
+      renderPublicMedicationCatalog();
+    }
+
+    function renderPublicMedicationCatalog() {
+      renderMedicationCatalogTo('public-medication-catalog', 'public-catalog-count', publicMedicationCatalogFilter, publicMedicationCatalogQuery);
+    }
+
+    function renderMedicationCatalogTo(listId, countId, activeFilter, activeQuery) {
+      const list = document.getElementById(listId);
+      const count = document.getElementById(countId);
+      if (!list) return;
+
+      const filtered = medicationCatalog.filter(med => {
+        const matchesFilter = activeFilter === 'all' || med.classe === activeFilter;
+        const haystack = `${med.name} ${med.spec} ${med.ind} ${med.voies} ${med.dose} ${med.surv} ${med.ei} ${med.conduite}`.toLowerCase();
+        const matchesQuery = !activeQuery || haystack.includes(activeQuery);
+        return matchesFilter && matchesQuery;
+      });
+
+      if (count) {
+        count.textContent = `${filtered.length} / ${medicationCatalog.length} médicaments`;
+      }
+
+      if (filtered.length === 0) {
+        list.innerHTML = `
+          <div class="empty-state" style="grid-column: 1 / -1;">
+            <i class="ti ti-search"></i>
+            <p>Aucun médicament trouvé avec ce filtre.</p>
+          </div>
+        `;
+        return;
+      }
+
+      list.innerHTML = filtered.map(med => {
+        const theme = medicationCatalogThemes[med.classe] || medicationCatalogThemes.antipsycho;
+        return `
+          <article class="medication-card" onclick="openMedicationCatalogDetail('${med.id}')">
+            <div class="medication-card-top">
+              <div>
+                <div class="medication-card-title">${escapeHtml(med.name)}</div>
+                <div class="medication-card-spec">${escapeHtml(med.spec)}</div>
+              </div>
+              <span class="medication-badge" style="background:${theme.cb};color:${theme.ct}">${escapeHtml(theme.cl)}</span>
+            </div>
+            <div class="medication-card-desc">${escapeHtml(med.ind.length > 78 ? med.ind.slice(0, 78) + '...' : med.ind)}</div>
+            <div class="medication-card-extra"><strong>Voie(s)</strong> : ${escapeHtml(med.voies)}</div>
+            <div class="medication-card-actions">
+              <button type="button"><i class="ti ti-eye"></i> Voir la fiche</button>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function openMedicationCatalogDetail(id) {
+      const med = medicationCatalog.find(item => item.id === id);
+      if (!med) return;
+
+      const theme = medicationCatalogThemes[med.classe] || medicationCatalogThemes.antipsycho;
+      document.getElementById('catalog-modal-title').textContent = med.name;
+      document.getElementById('catalog-modal-body').innerHTML = `
+        <div class="medication-card" style="cursor: default; margin-bottom: 0;">
+          <div class="medication-card-top">
+            <div>
+              <div class="medication-card-title">${escapeHtml(med.name)}</div>
+              <div class="medication-card-spec">${escapeHtml(med.spec)}</div>
+            </div>
+            <span class="medication-badge" style="background:${theme.cb};color:${theme.ct}">${escapeHtml(theme.cl)}</span>
+          </div>
+          <div class="medication-detail-grid">
+            <div class="medication-detail-row">
+              <span class="medication-detail-label">Indication</span>
+              <div class="medication-detail-value">${escapeHtml(med.ind)}</div>
+            </div>
+            <div class="medication-detail-row">
+              <span class="medication-detail-label">Voie(s) d'administration</span>
+              <div class="medication-detail-value">${escapeHtml(med.voies)}</div>
+            </div>
+            <div class="medication-detail-row">
+              <span class="medication-detail-label">Dose usuelle</span>
+              <div class="medication-detail-value">${escapeHtml(med.dose)}</div>
+            </div>
+            <div class="medication-detail-row">
+              <span class="medication-detail-label">Surveillance infirmière</span>
+              <div class="medication-detail-value">${escapeHtml(med.surv)}</div>
+            </div>
+            <div class="medication-detail-row">
+              <span class="medication-detail-label">Effets indésirables</span>
+              <div class="medication-detail-value">${escapeHtml(med.ei)}</div>
+            </div>
+            <div class="medication-detail-row">
+              <span class="medication-detail-label">Conduite infirmière</span>
+              <div class="medication-detail-value">${escapeHtml(med.conduite)}</div>
+            </div>
+          </div>
+        </div>
+      `;
+      document.getElementById('catalog-medication-modal').classList.add('active');
+    }
+
+    function closeMedicationCatalogDetail() {
+      document.getElementById('catalog-medication-modal').classList.remove('active');
+    }
+
+    function scrollToPublicMedicationSection() {
+      document.getElementById('public-medications')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     // ============================================================================
